@@ -30,8 +30,6 @@ var userSchema = new mongoose.Schema({
     trim: true
   },
 
-
-  //Return Later
  
   encry_password:{
       type: String,
@@ -54,7 +52,22 @@ var userSchema = new mongoose.Schema({
 });
 
 
+userSchema.virtual("password")
+.set(function(password){
+    this._password = password
+    this.salt = uuidv1();
+    this.encry_password = this.securePassword(password);;
+})
+.get(function(){
+  return this._password
+});
+
 userSchema.method ={
+
+  autheticate: function(plainpassword){
+    return this.securePassword(plainpassword) === this.encry_password
+  },
+
   securePassword : function(plainpassword){
     if(!password) return "";
       try{
