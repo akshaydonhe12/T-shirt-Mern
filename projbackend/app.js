@@ -1,9 +1,10 @@
 
 require('dotenv').config();
 
-const mongoose = require('mongoose');
-const express = require('express');
+const mongoose = require("mongoose");
+const express = require("express");
 const app = express();
+const bodyParser = require('body-parser')
 
 
 mongoose.connect(process.env.DATABASE, {
@@ -12,8 +13,9 @@ mongoose.connect(process.env.DATABASE, {
     useUnifiedTopology: true,
     useCreateIndex: true
 
-}).then(() =>{
-    console.log("DB CONNECT");
+})
+.then(() =>{
+    console.log("DB CONNECTED");
 });
 
 const port = process.env.PORT || 8000;
