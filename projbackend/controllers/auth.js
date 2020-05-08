@@ -6,17 +6,17 @@ const User = require("../models/user");
 exports.signup = (req,res) => {
    const user = new User(req.body);
    user.save((err,user) =>{
-    if(err){
+    if (err){
         return res.status(400).json({
             err: "NOT ABLE TO SAVE"
-        })
+        });
     }
     res.json({
         name: user.name,
-        password: user.password,
+        email: user.email,
         id: user._id
     });
-   })
+   });
 };
 
 
