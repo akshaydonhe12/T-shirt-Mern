@@ -1,9 +1,22 @@
+const User = require("../models/user");
+
+
+
 
 exports.signup = (req,res) => {
-    console.log("REQ BODY", req.body);
+   const user = new User(req.body);
+   user.save((err,user) =>{
+    if(err){
+        return res.status(400).json({
+            err: "NOT ABLE TO SAVE"
+        })
+    }
     res.json({
-        message: "signup works!"
+        name: user.name,
+        password: user.password,
+        id: user._id
     });
+   })
 };
 
 
