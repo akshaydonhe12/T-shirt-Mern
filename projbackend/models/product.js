@@ -1,4 +1,4 @@
-const monggose = require('mongoose');
+const mongoose = require('mongoose');
 const {ObjectId} = mongoose.Schema;
 
 
@@ -41,7 +41,7 @@ const productSchema = new mongoose.Schema({
     },
 
     photo:{
-        type: Buffer,
+        data: Buffer,
         contentType: String
     }
 
