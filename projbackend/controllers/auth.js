@@ -18,7 +18,7 @@ exports.signup = (req,res) => {
    user.save((err,user) =>{
     if (err){
         return res.status(400).json({
-            err: "NOT ABLE TO SAVE"
+            err: "NOT able to save user in DB"
         });
     }
     res.json({
@@ -42,7 +42,7 @@ exports.signin = (req,res) => {
     }
 
     User.findOne({email}, (err,user) => {
-        if(err){
+        if(err || !user){
             return res.status(400).json({
                error:"USER email does not exits" 
             });
@@ -58,7 +58,7 @@ exports.signin = (req,res) => {
         const token = jwt.sign({_id: user._id},process.env.SECRET)
         
         // put token in cookie
-        res.cookie ("token",token,{expire: new Date()+9999});
+        res.cookie("token",token,{expire: new Date()+9999});
 
         //send response to front end
         const {_id,name,email,role} = user;
