@@ -29,6 +29,34 @@ exports.signup = (req,res) => {
 };
 
 
+exports.signin = (req,res) => {
+    const {email, password} = req.body;
+
+    if( !errors.isEmpty()) {
+        return res.status(422).json({
+         error: errors.array()[0].msg,
+
+        });
+    }
+
+    User.findOne({email}, () => {
+        if(err){
+            return res.status(400).json({
+               error:"USER does not exits" 
+            });
+        }
+
+        if(!user.autheticate(password)){
+            return res.status(401).json({
+                error:"Email and Password does not Match"
+            });
+        }
+
+
+    });
+
+};
+
 
 exports.signout = (req,res) => {
     res.json({
