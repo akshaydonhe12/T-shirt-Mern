@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const { check, validationResult } = require('express-validator');
-
+const jwt = require('jsonwebtoken');
+const expressJwt = require('express-jwt');
 
 exports.signup = (req,res) => {
 
@@ -52,7 +53,9 @@ exports.signin = (req,res) => {
             });
         }
 
-
+        //create token
+        const token = jwt.sign({_id: user._id},process.env.SECRET)
+        
     });
 
 };
