@@ -10,7 +10,7 @@ const cors = require('cors');
 
 //Routes
 const authRoutes = require("./routes/auth");
-const userRoutes = require("./routes/user ");
+const userRoutes = require("./routes/user");
 
 //DB CONNECTION
 
