@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Order = require("../models/order");
 
 
 
@@ -41,3 +42,18 @@ exports.updateUser =(req, res) =>{
 
     );
 }; 
+
+
+exports.userPurchaesList = (req, res) =>{
+    Order.find({user: req.profile._id})
+    .populate("user", "_id name")
+    .exec((err, order)=>{
+        if(err){
+            return res.status(400).json({
+                error:"No order on this ccount"
+            });
+        }
+        return res.json(order);
+    });
+
+};
