@@ -6,7 +6,7 @@ const{
     getUserById,
     getUser,
     updateUser, 
-    UserPurchaesList
+    userPurchaseList
 } = require("../controllers/user");
 
 
@@ -18,13 +18,8 @@ const{
 
 
 router.param("userId", getUserById);
-router.get("/user/:userId", isSigndIn, isAuthenticated,  getUser);
+router.get("/user/:userId", isSigndIn, isAuthenticated, getUser);
 router.put("/user/:userId", isSigndIn, isAuthenticated, updateUser);
-router.get(
-    "/orders/user/:userId", 
-    isSigndIn, 
-    isAuthenticated, 
-    UserPurchaesList
-    );
+router.get("/orders/user/:userId",  isSigndIn, isAuthenticated, userPurchaseList);
 
 module.exports = router;
