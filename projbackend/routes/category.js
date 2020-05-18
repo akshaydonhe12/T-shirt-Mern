@@ -43,7 +43,7 @@ router.put(
 
 
 //delete route 
-router.post(
+router.delete(
     "/category/:categoryId/:userId",
      isSigndIn, 
      isAuthenticated ,
