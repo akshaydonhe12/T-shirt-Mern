@@ -22,34 +22,34 @@ exports.createProduct = (req, res) =>{
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
 
-    form.parse(req, (err, fields, files) =>{
+    form.parse(req, (err, fields, file) =>{
         if(err){
             return res.status(400).json({
                 error:"Problem with image"
             });
         }
 
-    //destrcture the fields
+//destrcture the fields
     const {name, description, price, category, stock,} = fields;
 
     if(
         !name || 
         !description ||
         !price || 
-        category ||
-         stock
+        !category ||
+        !stock
      ){
        return res.status(400).json({
            error: "Please Include all fields"
        });
     }
 
-    let product = new Product(fields)
+    let product = new Product(fields);
 
+//handle file here
 
-    //handle file here
-    if(files.photo){
-        if(files.photo.size > 300000){
+    if (file.photo){
+        if (file.photo.size > 3000000) {
             return res.status(400).json({
                 error: "File size to big"
             });
@@ -57,15 +57,15 @@ exports.createProduct = (req, res) =>{
         product.photo.data = fs.readFileSync(file.photo.path);
         product.photo.contentType = file.photo.type;
     }
-    //save in  DB
-    product.save((err, product)=>{
-        if(files.photo.size > 300000){
-            return res.status(400).json({
-                error: "Savin tshirt in DB failed"
-            });
-        }
-        res.json(product);
-    });
 
+ //save in  DB
+ product.save((err, product) => {
+    if (err) {
+      res.status(400).json({
+        error: "Saving tshirt in DB failed"
+      });
+    }
+    res.json(product);
   });
+});
 };
