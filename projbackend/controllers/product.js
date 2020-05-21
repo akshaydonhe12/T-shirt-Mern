@@ -148,9 +148,11 @@ exports.updateProduct= (req, res) => {
 //product Listning
 
 exports.getAllProducts = (req,res) =>{
-    let limit = 8
+    let limit = req.query.limit ? parseInt(req.query.limit) : 8
+
     Product.find()
     .select("-photo")
+    .sort([[sortBy, "asc"]])
     .limit(limit)
     .exec((err, products)=>{
         if(err){
