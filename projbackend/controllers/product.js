@@ -84,3 +84,26 @@ exports.photo = (req, res, next) => {
     }
    next();
 };
+
+// delete controller
+
+exports.deleteProduct= (req, res) => {
+    let product = req.product;
+    product.remove((err, deletedProduct) => {
+        if(err){
+            return res.status(400).json({
+                error: "faild to delete the Product"
+            });
+        }
+        res.json({
+            message:"Deletion was a success",
+            deletedProduct
+        });
+    });
+};
+
+
+//update controller
+exports.updateProduct= (req, res) => {
+
+}

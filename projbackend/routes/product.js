@@ -1,8 +1,21 @@
 const express = require("express");
 const router = express.Router();
 
-const {getProductById, createProduct, getProduct, photo} = require("../controllers/product");
-const {isSigndIn, isAuthenticated, isAdmin} = require("../controllers/auth");
+const {
+    getProductById, 
+    createProduct, 
+    getProduct, 
+    photo,  
+    updateProduct,
+    deleteProduct
+} = require("../controllers/product");
+
+const {
+    isSigndIn, 
+    isAuthenticated, 
+    isAdmin
+} = require("../controllers/auth");
+
 const {getUserById} = require("../controllers/user");
 
 //param
@@ -12,9 +25,38 @@ router.param("productId", getProductById);
 
 //actual route
 
-router.post("/product/create/:userId", isSigndIn, isAuthenticated, isAdmin, createProduct);
+//create route
+router.post(
+    "/product/create/:userId", 
+    isSigndIn, 
+    isAuthenticated, 
+    isAdmin, 
+    createProduct
+    );
 
-router.get("/product/:productId", getProduct)
-router.get("product/photo/:productId", photo)
+//read route
+router.get("/product/:productId", getProduct);
+router.get("product/photo/:productId", photo);
+
+//delete route
+router.delete(
+    "/product/:productId/:userId",
+    isSigndIn,
+    isAuthenticated, 
+    isAdmin, 
+    deleteProduct
+    );
+
+//update route
+router.put(
+    "/product/:productId/:userId",
+    isSigndIn, 
+    isAuthenticated, 
+    isAdmin, 
+    updateProduct
+    );
+
+
+//listing route
 
 module.exports = router; 
