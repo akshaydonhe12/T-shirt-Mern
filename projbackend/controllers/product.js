@@ -104,6 +104,7 @@ exports.deleteProduct= (req, res) => {
 
 
 //update controller
+
 exports.updateProduct= (req, res) => {
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
@@ -114,9 +115,11 @@ exports.updateProduct= (req, res) => {
                 error:"Problem with image"
             });
         }
+        
+ //updation code
 
     let product = req.product;
-    product=_.extend
+    product =_.extend(product, fields)
 
 //handle file here
 
@@ -134,7 +137,7 @@ exports.updateProduct= (req, res) => {
  product.save((err, product) => {
     if (err) {
       res.status(400).json({
-        error: "Saving tshirt in DB failed"
+        error: "Updation of product failed"
       });
     }
     res.json(product);
