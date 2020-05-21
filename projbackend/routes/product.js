@@ -7,7 +7,8 @@ const {
     getProduct, 
     photo,  
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getAllProducts
 } = require("../controllers/product");
 
 const {
@@ -58,5 +59,7 @@ router.put(
 
 
 //listing route
+router.get("/products",getAllProducts);
+
 
 module.exports = router; 

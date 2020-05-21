@@ -145,3 +145,20 @@ exports.updateProduct= (req, res) => {
 });
 };
 
+//product Listning
+
+exports.getAllProducts = (req,res) =>{
+    let limit = 8
+    Product.find()
+    .select("-photo")
+    .limit(limit)
+    .exec((err, products)=>{
+        if(err){
+            return res.status(400).json({
+                error: "No product Found"
+            });
+        }
+        res.json(products);
+    })
+}
+
