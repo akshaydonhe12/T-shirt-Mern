@@ -9,7 +9,18 @@ const {
 const {getUserById, pushOrderInPurchaseList} = require("../controllers/user");
 const {updatestock} = require("../controllers/product");
 
-const{} =require("../controllers/order");
+const{getOrderById} =require("../controllers/order");
+
+//params
+ router.param("userId", getUserById);
+ router.param("orderId", getOrderById);
+
+
+
+
+//actual route
+
+
 
 
 module.exports = router;
