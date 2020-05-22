@@ -9,7 +9,7 @@ const {
 const {getUserById, pushOrderInPurchaseList} = require("../controllers/user");
 const {updatestock} = require("../controllers/product");
 
-const{getOrderById} =require("../controllers/order");
+const{getOrderById, createOrder} =require("../controllers/order");
 
 //params
  router.param("userId", getUserById);
@@ -20,7 +20,15 @@ const{getOrderById} =require("../controllers/order");
 
 //actual route
 
+//create route
 
-
+router.post(
+    "/order/create/:userId", 
+    isSigndIn, 
+    isAuthenticated, 
+    pushOrderInPurchaseList, 
+    updatestock,
+    createOrder
+    );
 
 module.exports = router;
