@@ -9,7 +9,7 @@ const {
 const {getUserById, pushOrderInPurchaseList} = require("../controllers/user");
 const {updateStock} = require("../controllers/product");
 
-const{getOrderById, createOrder, getAllOrders }= require("../controllers/order");
+const{getOrderById, createOrder, getAllOrders,getOrderStatus,updateStatus }= require("../controllers/order");
 
 //params
  router.param("userId", getUserById);
@@ -35,8 +35,26 @@ router.get("order/all/:userId",
  isSigndIn, 
 isAuthenticated,
 isAdmin,
-getAllOrders
-)
+getAllOrders,
+
+);
+
+//status Of Order
+router.get(
+  "/order/status/:userId",
+  isSigndIn, 
+  isAuthenticated,
+  isAdmin,
+  getOrderStatus
+);
+
+router.put(
+  "order/:orderId/status/:userId", 
+isSigndIn, 
+isAuthenticated, 
+isAdmin, 
+updateStatus
+);
 
 
 module.exports = router;
