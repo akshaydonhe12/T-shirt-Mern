@@ -68,12 +68,12 @@ exports.signin = (req,res) => {
 };
 
 
-exports.signout = (req,res) => { 
-    res.clearcookie("token");
+exports.signout = (req, res) => {
+    res.clearCookie("token");
     res.json({
-        message: "User signout successfully"
+      message: "User signout successfully"
     });
-};
+  };
 
 
 //Protected routes
