@@ -35,7 +35,7 @@ const Menu = ({history}) => (
                 </Link>
             </li>
             <li className="nav-item">
-                <Link style={currentTab(history, "/Signup")} className="nav-link" to="/Signnup">
+                <Link style={currentTab(history, "/Signup")} className="nav-link" to="/Signup">
                     Signup
                 </Link>
             </li>
