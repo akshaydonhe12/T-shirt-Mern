@@ -24,8 +24,8 @@ const Signin = () => {
                     </form>
                 </div>
             </div>
-        )
-    }
+        );
+    };
 
 
     return (
