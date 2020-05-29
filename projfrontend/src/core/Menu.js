@@ -1,60 +1,78 @@
 import React from "react";
-import {Link, withRouter} from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 const currentTab = (history, path) => {
-    if(history.location.pathname ===path) {
-        return {color: "#ffffff"}
-    } else {
-        return {color: "#ff5200"}
-    }
-        
-}
+  if (history.location.pathname === path) {
+    return { color: "#2ecc72" };
+  } else {
+    return { color: "#FFFFFF" };
+  }
+};
 
+const Menu = ({ history }) => (
+  <div>
+    <ul className="nav nav-tabs bg-dark">
+      <li className="nav-item">
+        <Link style={currentTab(history, "/")} className="nav-link" to="/">
+          Home
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          style={currentTab(history, "/cart")}
+          className="nav-link"
+          to="/cart"
+        >
+          Cart
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          style={currentTab(history, "/user/dashboard")}
+          className="nav-link"
+          to="/user/dashboard"
+        >
+          Dashboard
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          style={currentTab(history, "/admin/dashboard")}
+          className="nav-link"
+          to="/admin/dashboard"
+        >
+          A. Dashboard
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          style={currentTab(history, "/signup")}
+          className="nav-link"
+          to="/signup"
+        >
+          Signup
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          style={currentTab(history, "/signin")}
+          className="nav-link"
+          to="/signin"
+        >
+          Sign In
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          style={currentTab(history, "/signout")}
+          className="nav-link"
+          to="/signout"
+        >
+          Signout
+        </Link>
+      </li>
+    </ul>
+  </div>
+);
 
-const Menu = ({history}) => (
-    <div>
-        <ui className="nav nav-tabs bg-dark">
-            <li className="nav-item">
-                <Link style={currentTab(history, "/")} className="nav-link" to="/">
-                    Home
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link style={currentTab(history, "cart")} className="nav-link" to="cart">
-                    Cart
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link style={currentTab(history, "/user/dashboard")} className="nav-link" to="/user/dasboard">
-                    Dashboard
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link style={currentTab(history, "/A.dashboard")} className="nav-link" to="/A.dashboard">
-                    A.Dashboard
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link style={currentTab(history, "/Signup")} className="nav-link" to="/Signup">
-                    Signup
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link style={currentTab(history, "/Signin")} className="nav-link" to="/Signin">
-                    Signin
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link style={currentTab(history, "/Signout")} className="nav-link" to="/Signout">
-                    Signout
-                </Link>
-            </li>
-        </ui>
-    </div>
-)
-
-
-
-
-
-export default withRouter (Menu);
+export default withRouter(Menu);
