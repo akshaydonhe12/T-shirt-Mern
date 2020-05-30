@@ -8,7 +8,6 @@ import PrivateRoute from "./auth/helper/PrivateRoutes";
 import UserDashBoard from "./user/UserDashBoard";
 import AdminDashBoard from "./user/AdminDashBoard";
 
-
 const Routes = () => {
   return (
     <BrowserRouter>

@@ -4,13 +4,13 @@ import { isAutheticated} from "./index";
 
 
 
-const PrivateRoute =({ component: component, ...rest }) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
     return (
       <Route
         {...rest}
         render={ props =>
             isAutheticated() ? (
-            < component {...props} />
+            < Component {...props} />
           ) : (
             <Redirect
               to={{
