@@ -37,11 +37,24 @@ const AddCategory = () => {
                 setError(true)
             } else {
                 setError("")
-                setSuccess(true)
+                setSuccess(true);
+                setName("");
             }
         });
         
     };
+
+    const successMessage = () => {
+        if (success) {
+            return <h4 className="text-success">Category created successfully</h4>
+        }
+    }
+
+    const warningMessage = () => {
+        if (error) {
+            return <h4 className="text-success">Failed to created Category</h4>
+        }
+    }
 
     const myCategoryForm = () => (
         <form>
@@ -68,6 +81,8 @@ const AddCategory = () => {
    >
        <div className="row bg-white rounded">
            <div className="col-md-8 offset-md-2">
+               {successMessage()}
+               {warningMessage()}
                {myCategoryForm()}
                {goBack()}
            </div>
