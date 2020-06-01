@@ -87,6 +87,21 @@ const AddProduct = () => {
     </div>
   );
 
+  const errorMessage = () => {
+    return (
+      <div className="row">
+        <div className="col-md-6 offset-sm-3 text-left">
+          <div
+            className="alert alert-danger"
+            style={{ display: error ? "" : "none" }}
+          >
+            {error}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const createProductForm = () => (
     <form>
       <span>Post photo</span>
@@ -176,6 +191,7 @@ const AddProduct = () => {
         <div className="col-md-8 offset-md-2">
           {successMessage()}
           {createProductForm()}
+          {errorMessage()}
         </div>
       </div>
     </Base>
