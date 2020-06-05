@@ -11,6 +11,7 @@ import { addItemToCart } from "./helper/cartHelper";
     }) => {
 
            const [redirect, setRidrect] =useState(false);
+           const [count, setCount] = useState(product.count);
 
             const cartTitle = product ? product.name : "A Photo from prexels";
             const cartDescription = product ? product.description : "Default description";
@@ -20,7 +21,7 @@ import { addItemToCart } from "./helper/cartHelper";
         addItemToCart(product, ()=> setRidrect(true))
       }
 
-          const getRidrect = (redirect) => {
+          const getARidrect = (redirect) => {
             if(redirect) {
               return <Redirect to="/cart" />
             }
@@ -56,6 +57,7 @@ import { addItemToCart } from "./helper/cartHelper";
           <div className="card text-white bg-dark border border-info ">
             <div className="card-header lead">{cartTitle}</div>
             <div className="card-body">
+              {getARidrect(redirect)}
               <ImageHelper product = {product} />
               <p className="lead bg-success font-weight-normal text-wrap">
                 {cartDescription}
