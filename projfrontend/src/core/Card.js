@@ -1,5 +1,7 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import ImageHelper from "./helper/ImageHelper";
+import { Redirect } from "react-router-dom";
+import { addItemToCart } from "./helper/cartHelper";
 
 
     const Card = ({
@@ -8,11 +10,27 @@ import ImageHelper from "./helper/ImageHelper";
         removeFromCart= false
     }) => {
 
+           const [redirect, setRidrect] =useState(false);
+
+            const cartTitle = product ? product.name : "A Photo from prexels";
+            const cartDescription = product ? product.description : "Default description";
+            const cartPrice = product ? product.price : "DEFAULT";
+            
+      const addToCart = () => {
+        addItemToCart(product, ()=> setRidrect(true))
+      }
+
+          const getRidrect = (redirect) => {
+            if(redirect) {
+              return <Redirect to="/cart" />
+            }
+          }
+
         const showAddToCart = (addtoCart) => {
             return (
                 addtoCart && (
                     <button
-                    onClick={() => {}}
+                    onClick={addToCart}
                     className="btn btn-block btn-outline-success mt-2 mb-2"
                   >
                     Add to Cart
@@ -36,13 +54,13 @@ import ImageHelper from "./helper/ImageHelper";
 
         return (
           <div className="card text-white bg-dark border border-info ">
-            <div className="card-header lead">A photo from pexels</div>
+            <div className="card-header lead">{cartTitle}</div>
             <div className="card-body">
               <ImageHelper product = {product} />
               <p className="lead bg-success font-weight-normal text-wrap">
-                this photo looks great
+                {cartDescription}
               </p>
-              <p className="btn btn-success rounded  btn-sm px-4">$ 5</p>
+              <p className="btn btn-success rounded  btn-sm px-4">$ {cartPrice}</p>
               <div className="row">
                 <div className="col-12">
                   {showAddToCart(addtoCart)}
