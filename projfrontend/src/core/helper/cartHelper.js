@@ -29,11 +29,19 @@ export const removeItemFromCart = (prdouctId) => {
             cart = JSON.parse(localStorage.getItem("cart"));
         }
         cart.map((product, index) => {
-            if(product._id = prdouctId){
+            if(product._id === prdouctId){
                 cart.splice(index, 1)
             }
         });
         localStorage.setItem("cart", JSON.stringify(cart));
     }
     return cart;
+};
+
+
+export const cartEmpty = next => { 
+    if(typeof window !== undefined) {
+        localStorage.removeItem("cart")
+        next();
+    }
 };
