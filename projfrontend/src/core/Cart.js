@@ -4,6 +4,7 @@ import { API } from "../backend";
 import Base from "./Base";
 import Card from "./Card";
 import { loadCart } from "./helper/cartHelper";
+import Paymentb from "./Paymentb";
 
 const Cart = () => {
   const [products, setProducts] = useState([]);
@@ -45,10 +46,12 @@ const Cart = () => {
           {products.length > 0 ? (
             loadAllProducts(products)
           ) : (
-            <h3>NO products </h3>
+            <h4>No products</h4>
           )}
         </div>
-        <div className="col-6">let's got for braintree</div>
+        <div className="col-6">
+          <Paymentb products={products} setReload={setReload} />
+        </div>
       </div>
     </Base>
   );
